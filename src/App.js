@@ -10,6 +10,8 @@ function App() {
 
   useEffect(() => {
     checkWin();
+    checkIfTie();
+
     if (player === "X") {
       setPlayer("O");
     } else {
@@ -49,6 +51,18 @@ function App() {
         setResult({ winner: player, state: "won" });
       }
     });
+  };
+
+  const checkIfTie = () => {
+    let filled = true;
+    board.forEach((square) => {
+      if (square === "") {
+        filled = false;
+      }
+    });
+    if (filled) {
+      setResult({ winner: "No One", state: "Tie" });
+    }
   };
 
   return (
