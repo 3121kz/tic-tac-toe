@@ -49,41 +49,41 @@ function App() {
         <div className="row">
           {" "}
           <Square
-            val={board[0]}
+            val={board[3]}
             chooseSquare={() => {
-              chooseSquare(0);
+              chooseSquare(3);
             }}
           />
           <Square
-            val={board[1]}
+            val={board[4]}
             chooseSquare={() => {
-              chooseSquare(1);
+              chooseSquare(4);
             }}
           />
           <Square
-            val={board[2]}
+            val={board[5]}
             chooseSquare={() => {
-              chooseSquare(2);
+              chooseSquare(5);
             }}
           />
         </div>
         <div className="row">
           <Square
-            val={board[0]}
+            val={board[6]}
             chooseSquare={() => {
-              chooseSquare(0);
+              chooseSquare(6);
             }}
           />
           <Square
-            val={board[1]}
+            val={board[7]}
             chooseSquare={() => {
-              chooseSquare(1);
+              chooseSquare(7);
             }}
           />
           <Square
-            val={board[2]}
+            val={board[8]}
             chooseSquare={() => {
-              chooseSquare(2);
+              chooseSquare(8);
             }}
           />{" "}
         </div>
