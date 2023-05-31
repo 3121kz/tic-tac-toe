@@ -5,8 +5,24 @@ import { Patterns } from "./components/Patterns";
 
 function App() {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
-  const [player, setPlayer] = useState("X");
+  const [player, setPlayer] = useState("O");
   const [result, setResult] = useState({ winner: "none", state: "none" });
+
+  useEffect(() => {
+    checkWin();
+    if (player === "X") {
+      setPlayer("O");
+    } else {
+      setPlayer("X");
+    }
+  }, [board]);
+
+  useEffect(() => {
+    if (result.state !== "none") {
+      alert(`Game finished! Winning player: ${result.winner}`);
+    }
+  });
+
   const chooseSquare = (square) => {
     setBoard(
       board.map((val, idx) => {
@@ -17,12 +33,6 @@ function App() {
         return val;
       })
     );
-
-    if (player === "X") {
-      setPlayer("O");
-    } else {
-      setPlayer("X");
-    }
   };
 
   const checkWin = () => {
@@ -36,7 +46,7 @@ function App() {
         }
       });
       if (foundWinningPattern) {
-        setResult({ winner, state: "won" });
+        setResult({ winner: player, state: "won" });
       }
     });
   };
