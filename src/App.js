@@ -1,11 +1,12 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Square from "./components/Square";
 import { Patterns } from "./components/Patterns";
 
 function App() {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
   const [player, setPlayer] = useState("X");
+  const [result, setResult] = useState({ winner: "none", state: "none" });
   const chooseSquare = (square) => {
     setBoard(
       board.map((val, idx) => {
@@ -22,6 +23,22 @@ function App() {
     } else {
       setPlayer("X");
     }
+  };
+
+  const checkWin = () => {
+    Patterns.forEach((currPattern) => {
+      const firstPlayer = board[currPattern[0]];
+      if (firstPlayer === "") return;
+      let foundWinningPattern = true;
+      currPattern.forEach((idx) => {
+        if (board[idx] !== firstPlayer) {
+          foundWinningPattern = false;
+        }
+      });
+      if (foundWinningPattern) {
+        setResult({ winner, state: "won" });
+      }
+    });
   };
 
   return (
@@ -86,7 +103,7 @@ function App() {
             chooseSquare={() => {
               chooseSquare(8);
             }}
-          />{" "}
+          />
         </div>
       </div>
     </div>
